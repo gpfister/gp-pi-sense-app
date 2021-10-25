@@ -1,0 +1,39 @@
+{
+  "name": "gp-pi-sense-device",
+  "version": "0.1.0",
+  "description": "Raspberry Pi with Sense Hat embedded layer",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gpfister/gp-pi-sense-device.git"
+  },
+  "keywords": [
+    "raspberry",
+    "raspberry",
+    "pi",
+    "rpi",
+    "sense",
+    "hat",
+    "sense",
+    "node",
+    "typescript",
+    "balena",
+    "gcp",
+    "google",
+    "cloud",
+    "platform",
+    "iot",
+    "iot",
+    "core",
+    "mqtt"
+  ],
+  "author": "Greg PFISTER",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gpfister/gp-pi-sense-device/issues"
+  },
+  "homepage": "https://github.com/gpfister/gp-pi-sense-device#readme"
+}

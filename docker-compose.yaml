@@ -1,0 +1,50 @@
+version: "2.1"
+services:
+  # api:
+  #   network_mode: "host"
+  #   build: ./api
+  #   container_name: api
+  #   volumes:
+  #     - lock-api-vol-oskey-dev-data:/app/data
+  #   ports:
+  #     - "8889:3000"
+  # app:
+  #   network_mode: "host"
+  #   build: ./app
+  #   container_name: app
+  #   ports:
+  #     - "80:80"
+  # client-mqtt:
+  #   network_mode: "host"
+  #   build: ./client-mqtt
+  #   container_name: client-mqtt
+  #   volumes:
+  #     - lock-client-mqtt-vol-oskey-dev-data:/app/data
+  # client-gateway:
+  #   network_mode: "host"
+  #   build: ./client-gateway
+  #   container_name: client-gateway
+  #   volumes:
+  #     - lock-client-gateway-vol-oskey-dev-data:/app/data
+  hardware:
+    network_mode: "host"
+    build: ./containers/hardware
+    container_name: hardware
+    privileged: true
+    devices:
+      - /dev/i2c-1:/dev/i2c-1
+    cap_add:
+      - SYS_RAWIO
+    # volumes:
+    # - /sys/class/gpio:/sys/class/gpio
+    #   - lock-vol-oskey-dev-certs:/app/certs
+    #   - lock-client-vol-oskey-dev-data:/app/data
+# volumes:
+  # lock-api-vol-oskey-dev-data:
+  #   driver: local
+  # lock-client-vol-oskey-dev-data:
+  #   driver: local
+  # lock-client-gateway-vol-oskey-dev-data:
+  #   driver: local
+  # lock-client-mqtt-vol-oskey-dev-data:
+  #   driver: local

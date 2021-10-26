@@ -1,17 +1,16 @@
 {
   "name": "gp-pi-sense-device",
-  "version": "0.1.0",
-  "description": "Raspberry Pi with Sense Hat embedded layer",
-  "main": "dist/index.js",
+  "version": "0.0.1",
+  "description": "GP's Pi Sense Device apps built for deployment with Balena Cloud",
   "scripts": {
-    "test": "test"
+    "deploy": "balena push gp-pi-sense --multi-dockerignore --nocache",
+    "sim": "balena push gp-pi-sense --multi-dockerignore --emulated"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gpfister/gp-pi-sense-device.git"
   },
   "keywords": [
-    "raspberry",
     "raspberry",
     "pi",
     "rpi",
@@ -26,8 +25,6 @@
     "cloud",
     "platform",
     "iot",
-    "iot",
-    "core",
     "mqtt"
   ],
   "author": "Greg PFISTER",

@@ -1,0 +1,24 @@
+# Git
+.git/
+.git*
+
+# Docker
+.dockerignore
+Dockerfile
+
+# VS Code
+.vscode/
+
+# Node.js
+dist/
+test/
+node_modules/
+
+# Markdown
+README.md
+
+# Dotenv
+.env
+
+# Ignore .docker
+.docker/

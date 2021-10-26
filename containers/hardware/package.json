@@ -1,0 +1,37 @@
+{
+  "name": "gp-pi-sense-device-hardware",
+  "version": "0.0.1",
+  "description": "Hardware integration layer of the GP's Pi Sense Device",
+  "main": "dist/hardware.js",
+  "scripts": {
+    "test": "test",
+    "build": "tsc --sourceMap",
+    "dev": "tsc-watch --onSuccess \"node ./dist/hardware.js\" --sourceMap",
+    "prod": "node ./dist/hardware.js"
+  },
+  "keywords": [
+    "pi",
+    "sens",
+    "hat",
+    "sensors",
+    "RTIMUlib",
+    "RGB565"
+  ],
+  "author": "Greg PFISTER",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "log4js": "^6.3.0",
+    "nodeimu": "^2.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "eslint": "^8.1.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "tsc-watch": "^4.5.0",
+    "typescript": "^4.4.4"
+  }
+}

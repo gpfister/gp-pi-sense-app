@@ -7,8 +7,7 @@
  * @license MIT
 */
 
-export type GPRGB = {
-  r: number,
-  g: number,
-  b: number
+export type GPLPS25HData = {
+  temperatureFromPressure: number,
+  pressure: number
 };

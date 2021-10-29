@@ -7,8 +7,9 @@
  * @license MIT
 */
 
-export type GPRGB = {
-  r: number,
-  g: number,
-  b: number
+export type GPSensorData = {
+  pressure: number,
+  temperatureFromPressure: number,
+  temperatureFromHumidity: number,
+  humidity: number
 };

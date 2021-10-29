@@ -70,6 +70,7 @@ export class GPLedMatrixController extends EventEmitter {
     }
 
     // Reaching here means the frame buffer decice could not be found
+    this._logger.error(`[Led Matrix] Frame Buffer device could not be found`);
     this.emit('failedToFindFrameBufferDevice');
   }
 

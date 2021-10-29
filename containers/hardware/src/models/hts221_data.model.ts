@@ -7,8 +7,7 @@
  * @license MIT
 */
 
-export type GPRGB = {
-  r: number,
-  g: number,
-  b: number
+export type GPHTS221Data = {
+  temperatureFromHumidity: number,
+  humidity: number
 };

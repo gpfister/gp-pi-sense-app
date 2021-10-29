@@ -11,20 +11,27 @@
   },
   "keywords": [
     "pi",
-    "sens",
+    "sense",
     "hat",
     "sensors",
-    "RTIMUlib",
-    "RGB565"
+    "leds",
+    "led matrix",
+    "LPS25H",
+    "HTS221",
+    "RGB565",
+    "pressure",
+    "temperature",
+    "humidity"
   ],
   "author": "Greg PFISTER",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "log4js": "^6.3.0",
-    "nodeimu": "^2.1.12"
+    "i2c-bus": "^5.2.2",
+    "log4js": "^6.3.0"
   },
   "devDependencies": {
+    "@types/i2c-bus": "^5.1.0",
     "@types/node": "^16.11.6",
     "eslint": "^8.1.0",
     "eslint-config-standard": "^16.0.3",

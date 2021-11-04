@@ -5,7 +5,7 @@
  * @since v0.1.0
  * @copyright (c) 2020, Greg PFISTER. MIT License
  * @license MIT
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -15,18 +15,26 @@
  * SOFTWARE.
  */
 
-export function toHex(byte: number): string {
-  let hex = byte.toString(16);
-  for (let i = hex.length; i < 2; i++) hex = "0" + hex;
-  return `0x${hex}`;
+import * as express from "express";
+
+import { GPSensorDataController } from "../controllers";
+
+/**
+ * Provides the router for all queries related to the device info
+ */
+export class GPSensorDataRouter {
+  /**
+   * Build the router for all queries related to the device info
+   */
+  static getRouter(): any {
+    const router = express.Router();
+
+    router.options("/*");
+    router.post("/", GPSensorDataController.postSensorData);
+    router.get("/", GPSensorDataController.getLatest);
+    router.get("/$date1/$date2", GPSensorDataController.getSubset);
+
+    return router;
+  }
 }
 
-export function toBinary(byte: number): string {
-  let binary = byte.toString(2);
-  for (let i = binary.length; i < 8; i++) binary = "0" + binary;
-  return `0b${binary}`;
-}
-
-export function wait(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}

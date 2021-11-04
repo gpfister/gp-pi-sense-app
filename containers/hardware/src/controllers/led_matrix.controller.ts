@@ -1,10 +1,18 @@
 /**
- * gp-pi-sense-device-hardware
+ * GP Pi Sense | A personal take on IoT and HomeKit
  *
  * @author Greg PFISTER
- * @since 0.0.1
- * @copyright (c) 2021, Greg PFISTER.
+ * @since v0.1.0
+ * @copyright (c) 2020, Greg PFISTER. MIT License
  * @license MIT
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 import { EventEmitter } from 'events';
@@ -36,6 +44,16 @@ const y: GPRGB = { r: 255, g: 255, b: 0 };
 export class GPLedMatrixController extends EventEmitter {
   private _logger: Logger;
   private _fb: string = '';
+  private _colors: GPRGB[] = [
+    z, z, z, z, z, z, z, z,
+    z, z, z, z, z, z, z, z,
+    z, z, z, z, z, z, z, z,
+    z, z, z, z, z, z, z, z,
+    z, z, z, z, z, z, z, z,
+    z, z, z, z, z, z, z, z,
+    z, z, z, z, z, z, z, z,
+    z, z, z, z, z, z, z, z,
+  ]
 
   constructor(logger: Logger) {
     super();
@@ -88,6 +106,8 @@ export class GPLedMatrixController extends EventEmitter {
     if (color.g < 0 || color.g > 255) throw new Error(`color.g = ${color.g} violates 0 <= color.g <= 255`);
     if (color.b < 0 || color.b > 255) throw new Error(`color.b = ${color.b} violates 0 <= color.b <= 255`);
 
+    this._colors[x * 8 + y] = color;
+
     let fd = openSync(this._fb, 'w')
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
@@ -105,11 +125,14 @@ export class GPLedMatrixController extends EventEmitter {
   }
 
   async setPixels(colors: GPRGB[]) {
+    if (colors.length !== 64) throw new Error(`All 64 leds must be set`);
     for (const color of colors) {
       if (color.r < 0 || color.r > 255) throw new Error(`color.r = ${color.r} violates 0 <= color.r <= 255`);
       if (color.g < 0 || color.g > 255) throw new Error(`color.g = ${color.g} violates 0 <= color.g <= 255`);
       if (color.b < 0 || color.b > 255) throw new Error(`color.b = ${color.b} violates 0 <= color.b <= 255`);
     }
+
+    this._colors = colors;
 
     let fd = openSync(this._fb, 'w')
     let i = 0;
@@ -121,5 +144,24 @@ export class GPLedMatrixController extends EventEmitter {
     }
     writeSync(fd, buf, 0, buf.length, 0);
     closeSync(fd)
+  }
+
+  async turnOff() {
+    const colors = this._colors;
+    await this.setPixels([
+      z, z, z, z, z, z, z, z,
+      z, z, z, z, z, z, z, z,
+      z, z, z, z, z, z, z, z,
+      z, z, z, z, z, z, z, z,
+      z, z, z, z, z, z, z, z,
+      z, z, z, z, z, z, z, z,
+      z, z, z, z, z, z, z, z,
+      z, z, z, z, z, z, z, z,
+    ]);
+    this._colors = colors;
+  }
+
+  async turnOn() {
+    await this.setPixels(this._colors);
   }
 }

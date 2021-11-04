@@ -15,18 +15,4 @@
  * SOFTWARE.
  */
 
-export function toHex(byte: number): string {
-  let hex = byte.toString(16);
-  for (let i = hex.length; i < 2; i++) hex = "0" + hex;
-  return `0x${hex}`;
-}
-
-export function toBinary(byte: number): string {
-  let binary = byte.toString(2);
-  for (let i = binary.length; i < 8; i++) binary = "0" + binary;
-  return `0b${binary}`;
-}
-
-export function wait(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+export { GPSensorData } from './sensor_data.model';

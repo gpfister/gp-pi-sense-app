@@ -1,13 +1,13 @@
 {
-  "name": "gp-pi-sense-device-hardware",
+  "name": "gp-pi-sense-device-homekit",
   "version": "0.0.1",
-  "description": "Hardware integration layer of the GP Pi Sense Device",
-  "main": "dist/hardware.js",
+  "description": "HomeKit layer of the GP Pi Sense Device",
+  "main": "dist/homekit.js",
   "scripts": {
     "test": "test",
     "build": "tsc --sourceMap",
-    "dev": "tsc-watch --onSuccess \"node ./dist/hardware.js\" --sourceMap",
-    "prod": "node ./dist/hardware.js"
+    "dev": "tsc-watch --onSuccess \"node ./dist/homekit.js\" --sourceMap",
+    "prod": "node ./dist/homekit.js"
   },
   "author": "Greg PFISTER",
   "license": "MIT",
@@ -18,11 +18,10 @@
   "dependencies": {
     "axios": "^0.24.0",
     "dotenv": "^10.0.0",
-    "i2c-bus": "^5.2.2",
+    "hap-nodejs": "^0.9.6",
     "log4js": "^6.3.0"
   },
   "devDependencies": {
-    "@types/i2c-bus": "^5.1.0",
     "@types/node": "^16.11.6",
     "eslint": "^8.1.0",
     "eslint-config-standard": "^16.0.3",

@@ -15,4 +15,5 @@
  * SOFTWARE.
  */
 
+export { GPHomeKitController } from './homekit.controller';
 export { GPLocalApiHttpController } from './local_api_http.controller';

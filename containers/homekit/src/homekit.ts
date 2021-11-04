@@ -19,12 +19,13 @@ import * as dotenv from 'dotenv';
 import { Logger, getLogger, configure } from 'log4js';
 import { EventEmitter } from 'events';
 
-import { GPLocalApiHttpController } from "./controllers";
+import { GPHomeKitController, GPLocalApiHttpController } from "./controllers";
 
 class GPHomeKit extends EventEmitter {
   private _logger: Logger;
 
   private _localApiHttpController: GPLocalApiHttpController;
+  private _homeKitController: GPHomeKitController;
 
   constructor() {
     super();
@@ -46,6 +47,12 @@ class GPHomeKit extends EventEmitter {
 
     // Local API controller
     this._localApiHttpController = new GPLocalApiHttpController('http://localhost:8080', this.logger);
+
+    // HomeKit controller
+    this._homeKitController = new GPHomeKitController(this.logger);
+    this.on('ready', async () => {
+      this._logger.info('[Main] HomeKit is ready');
+    });
   }
 
   get logger(): Logger {

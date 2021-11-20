@@ -1,13 +1,26 @@
 version: "2.1"
 services:
-  api:
+  gp-pi-sense:
     network_mode: "host"
-    build: ./containers/api
-    container_name: api
+    build: ./containers/gp-pi-sense
+    container_name: gp-pi-sense
     volumes:
-      - gp-pi-sense-api-data:/app/data
+      - gp-pi-sense-data:/app/data
     ports:
-      - "8080:3000"
+      - "54321:54321"
+    privileged: true
+    devices:
+      - /dev/i2c-1:/dev/i2c-1
+    cap_add:
+      - SYS_RAWIO
+  # api:
+  #   network_mode: "host"
+  #   build: ./containers/api
+  #   container_name: api
+  #   volumes:
+  #     - gp-pi-sense-api-data:/app/data
+  #   ports:
+  #     - "8080:3000"
   # app:
   #   network_mode: "host"
   #   build: ./app
@@ -26,22 +39,34 @@ services:
   #   container_name: client-gateway
   #   volumes:
   #     - lock-client-gateway-vol-oskey-dev-data:/app/data
-  hardware:
-    network_mode: "host"
-    build: ./containers/hardware
-    container_name: hardware
-    privileged: true
-    devices:
-      - /dev/i2c-1:/dev/i2c-1
-    cap_add:
-      - SYS_RAWIO
-    # volumes:
-    # - /sys/class/gpio:/sys/class/gpio
-    #   - lock-vol-oskey-dev-certs:/app/certs
-    #   - lock-client-vol-oskey-dev-data:/app/data
+  # hardware:
+  #   network_mode: "host"
+  #   build: ./containers/hardware
+  #   container_name: hardware
+  #   privileged: true
+  #   devices:
+  #     - /dev/i2c-1:/dev/i2c-1
+  #   cap_add:
+  #     - SYS_RAWIO
+  # homekit:
+  #   network_mode: "host"
+  #   build: ./containers/homekit
+  #   container_name: homekit
+  #   volumes:
+  #     - gp-pi-sense-homekit-data:/app/data
+  #   ports:
+  #     - "54321:54321"
+  # volumes:
+  # - /sys/class/gpio:/sys/class/gpio
+  #   - lock-vol-oskey-dev-certs:/app/certs
+  #   - lock-client-vol-oskey-dev-data:/app/data
 volumes:
-  gp-pi-sense-api-data:
+  gp-pi-sense-data:
     driver: local
+  # gp-pi-sense-api-data:
+  #   driver: local
+  # gp-pi-sense-homekit-data:
+  #   driver: local
 # lock-client-vol-oskey-dev-data:
 #   driver: local
 # lock-client-gateway-vol-oskey-dev-data:

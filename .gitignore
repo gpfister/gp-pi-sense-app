@@ -1,2 +1,8 @@
 # Log files
 *.log
+
+# Archives
+*.tar.gz
+*.tgz
+*.gz
+*.zip

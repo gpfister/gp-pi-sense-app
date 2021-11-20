@@ -16,7 +16,6 @@
     "rpi",
     "sense",
     "hat",
-    "sense",
     "node",
     "typescript",
     "balena",
@@ -25,7 +24,8 @@
     "cloud",
     "platform",
     "iot",
-    "mqtt"
+    "mqtt",
+    "homekit"
   ],
   "author": "Greg PFISTER",
   "license": "MIT",

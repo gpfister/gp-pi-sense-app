@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-# gp-pi-sense-device-app (a.k.a gp-pi-sense-app Snap)
+# gp-pi-sense-app (a.k.a gp-pi-sense-app Snap)
 
 _!!! DISCLAIMER: This is a work in progress !!!_
 
@@ -48,8 +48,8 @@ administration (accessing logs, rebooting, ...).
 To build, simple clone and run `npm ci` to download all project dependencies.
 
 ```
-git clone https://github.com/gpfister/gp-pi-sense-device-app.git
-cd gp-pi-sense-device-app
+git clone https://github.com/gpfister/gp-pi-sense-app.git
+cd gp-pi-sense-app
 npm ci
 ```
 

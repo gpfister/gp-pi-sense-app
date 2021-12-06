@@ -4,7 +4,7 @@ type: app
 version: "0.0.1+12"
 summary: Application layer of the GP Pi Sense device
 website: "https://greg-pfister.org/iot/gp-pi-sense"
-source-code: "https://github.com/gpfister/gp-pi-sense-device-app.git"
+source-code: "https://github.com/gpfister/gp-pi-sense-app.git"
 license: MIT
 
 description: |

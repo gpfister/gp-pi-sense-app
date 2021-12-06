@@ -128,7 +128,7 @@ NB:
 
 ## Contributions
 
-See instructions [here](./CONTRIBUTIONS.md).
+See instructions [here](./CONTRIBUTING.md).
 
 ## License
 

@@ -26,7 +26,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com/gpfister/gp-pi-sense-device.git"
+    "url": "ssh://git@github.com/gpfister/gp-pi-sense-device-app.git"
   },
   "dependencies": {
     "axios": "^0.24.0",

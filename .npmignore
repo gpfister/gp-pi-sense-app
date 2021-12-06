@@ -1,0 +1,24 @@
+# Build
+build/
+
+# Sources, test and dependencies
+node_modules/
+test/
+src/
+
+# Environment
+.env
+
+# Archives
+*.tgz
+*.snap
+
+# Temporary
+.tmp/
+
+# Typescript & ESLint
+tsconfig.json
+.eslintrc.json
+
+# Snap
+snap/

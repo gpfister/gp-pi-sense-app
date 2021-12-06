@@ -1,36 +1,69 @@
 {
-  "name": "gp-pi-sense-device",
-  "version": "0.0.1",
+  "name": "gp-pi-sense-app",
+  "version": "0.0.1+12",
   "description": "GP's Pi Sense Device apps built for deployment with Balena Cloud",
+  "main": "dist/gp_pi_sense_app.js",
+  "bin": {
+    "gp-pi-sense-app": "bin/gp_pi_sense_app.js",
+    "gp-pi-sense-app-daemon-start": "bin/gp_pi_sense_app_daemon_start.sh",
+    "gp-pi-sense-app-daemon-stop": "bin/gp_pi_sense_app_daemon_stop.sh"
+  },
   "scripts": {
-    "deploy": "balena push gp-pi-sense --multi-dockerignore --nocache",
-    "sim": "balena push gp-pi-sense --multi-dockerignore --emulated"
+    "test": "test",
+    "lint": "npx eslint ./src --ext .js,.jsx,.ts,.tsx --fix",
+    "build": "tsc --sourceMap",
+    "build:snap": "snapcraft --use-lxd",
+    "dev": "tsc-watch --onSuccess \"bin/gp_pi_sense_app.js start --hardware --mqtt --homekit\" --sourceMap",
+    "dev:file": "tsc-watch --onSuccess \"bin/gp_pi_sense_app.js start --hardware --mqtt --homekit --logFolder=/home/gpfister/Temp/gp-pi-sense-dev/log\" --sourceMap",
+    "dev:debug": "tsc-watch --onSuccess \"bin/gp_pi_sense_app.js start --hardware --mqtt --homekit --logLevel=debug\" --sourceMap",
+    "clean": "rm -rf dist node_modules *.log *.snap",
+    "clean:snap": "rm *.snap && snapcraft clean --use-lxd",
+    "help": "./bin/gp_pi_sense_app.js --help",
+    "help:start": "./bin/gp_pi_sense_app.js start --help",
+    "help:stop": "./bin/gp_pi_sense_app.js stop --help"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gpfister/gp-pi-sense-device.git"
-  },
-  "keywords": [
-    "raspberry",
-    "pi",
-    "rpi",
-    "sense",
-    "hat",
-    "node",
-    "typescript",
-    "balena",
-    "gcp",
-    "google",
-    "cloud",
-    "platform",
-    "iot",
-    "mqtt",
-    "homekit"
-  ],
   "author": "Greg PFISTER",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gpfister/gp-pi-sense-device/issues"
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/gpfister/gp-pi-sense-device.git"
   },
-  "homepage": "https://github.com/gpfister/gp-pi-sense-device#readme"
+  "dependencies": {
+    "axios": "^0.24.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dateformat": "^5.0.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "firebase": "^9.3.0",
+    "hap-nodejs": "^0.9.7",
+    "helmet": "^4.6.0",
+    "i2c-bus": "^5.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.3.0",
+    "mqtt": "^4.2.8",
+    "uuid": "^8.3.2",
+    "yargs": "^17.3.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.1",
+    "@types/cors": "^2.8.12",
+    "@types/dateformat": "^5.0.0",
+    "@types/express": "^4.17.13",
+    "@types/i2c-bus": "^5.1.0",
+    "@types/jsonwebtoken": "^8.5.6",
+    "@types/node": "^16.11.6",
+    "@types/uuid": "^8.3.3",
+    "@types/yargs": "^17.0.7",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.2.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "tsc-node": "0.0.3",
+    "tsc-watch": "^4.5.0",
+    "typescript": "^4.4.4"
+  }
 }

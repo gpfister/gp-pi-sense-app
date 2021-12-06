@@ -1,0 +1,49 @@
+name: gp-pi-sense-app
+base: core20
+type: app
+version: "0.0.1+12"
+summary: Application layer of the GP Pi Sense device
+website: "https://greg-pfister.org/iot/gp-pi-sense"
+source-code: "https://github.com/gpfister/gp-pi-sense-device-app.git"
+license: MIT
+
+description: |
+  The GP Pi Sense device is my take on building an IoT device using a Raspberry
+  Pi 3 A+, the Pi Sense Hat. It interfaces with Apple Homekit and Google Cloud
+  Platform (through Google Core IoT, via MQTTs). This application layer will be
+  placed on top of the gadget (gp-pi-sense) and the kernel (gp-pi-sense-kernel)
+  layers.
+
+architectures:
+  - build-on: arm64
+    run-on: arm64
+
+grade: stable
+confinement: strict
+
+parts:
+  gp-pi-sense-app:
+    plugin: PluginImpl
+    node-version: "16.13.1"
+    source: .
+    build-packages:
+      - libudev-dev
+      - libbluetooth-dev
+
+apps:
+  gp-pi-sense-app:
+    command: bin/gp-pi-sense-app-daemon-start
+    stop-command: bin/gp-pi-sense-app-daemon-stop
+    daemon: simple
+    plugs:
+      - network
+      - network-bind
+      - i2c
+      - framebuffer
+      - hardware-observe
+
+layout:
+  /var/data:
+    bind: $SNAP_DATA/data
+  /var/log:
+    bind: $SNAP_DATA/log
